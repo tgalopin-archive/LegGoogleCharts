@@ -17,17 +17,17 @@ Documentation
 
 The documentation is stored in the `doc` directory of this library:
 
-[Read the Documentation](https://github.com/tgalopin/LegGCharts/blob/master/doc/01 - Getting Started.md)
+[Read the Documentation](doc)
 
 Installation
 ------------
 
-All the installation instructions are located in [documentation](https://github.com/tgalopin/LegGCharts/blob/master/doc/01 - Getting Started.md).
+All the installation instructions are located in [documentation](doc).
 
 License
 -------
 
-See the license in the bundle: [LICENSE](https://github.com/tgalopin/LegGCharts/blob/master/LICENSE.md)
+See the license in the bundle: [LICENSE](LICENSE.md)
 
 About
 -----
@@ -37,4 +37,4 @@ The LegGCharts library is developped mainly by Titouan Galopin.
 Reporting an issue or a feature request
 ---------------------------------------
 
-Issues and feature requests are tracked in the [Github issue tracker](https://github.com/tgalopin/LegGCharts/issues).
+Issues and feature requests are tracked in the [Github issue tracker](issues).
