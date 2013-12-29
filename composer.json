@@ -4,7 +4,7 @@
     "description": "PHP 5.3 library to generate charts using GoogleChartsImage",
     "keywords": ["charts", "generation", "generator", "image", "google"],
     "homepage": "http://titouangalopin.com",
-    "license": "Creative Commons BY-NC 3.0",
+	"license": "BSD-3-Clause",
     "authors": [
 	    {
 		    "name": "Titouan Galopin",

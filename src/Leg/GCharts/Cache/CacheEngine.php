@@ -149,6 +149,7 @@ class CacheEngine
 	public function build(ChartInterface $chart, $keepTime = 3600)
 	{
 		if (! $this->has($chart)) {
+			echo 'PUT';
 			$this->put($chart, $keepTime);
 		}
 
