@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-include __DIR__.'/TestCase.php';
+include __DIR__ . '/TestCase.php';
 
 spl_autoload_register(function($class) {
 	if (0 === strpos($class, 'Leg\\GCharts\\')) {

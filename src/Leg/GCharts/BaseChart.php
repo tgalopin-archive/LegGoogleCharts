@@ -19,7 +19,7 @@ class BaseChart implements ChartInterface
 	/**
 	 * @var string
 	 */
-	const BASE_URL = 'https://chart.googleapis.com/chart';
+	const BASE_URL = 'http://chart.googleapis.com/chart';
 
 	/**
 	 * @var string

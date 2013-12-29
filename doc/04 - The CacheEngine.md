@@ -1,95 +1,57 @@
 Using cache with the CacheEngine
 ================================
 
-The Google ChartsImage tool is very cool and fast, but for some reason, you may
-want to cache the chart images. Fortunately, the LegGCharts provides
-a useful CacheEngine to do that for you.
+The Google ChartsImage tool is very cool but it's not always free. If you make too many requests
+to the Google servers, you will need to pay. To resolve that problem, you can cache your charts.
+Fortunately, the LegGCharts provides a useful CacheEngine to do that for you.
 
-## Enable the CacheEngine
+## Create the CacheEngine instance
 
-To enable the CacheEngine, you just need to create some configuration in your
-config.yml:
+The cache engine will require two directories to store the cache :
 
-``` yml
-leg_google_charts:
-    cache_engine:
-        enabled: true
+- the public one, accessible from users, to store charts images ;
+- the internal one, inaccessible from users, to store metadata about charts ;
+
+You can also provide an asset prefix that will be used to generate charts URL.
+By default, the internal directory is directly in the library directory.
+
+For instance:
+
+```php
+// Here we specify only the public cache directory
+$cacheEngine = new CacheEngine('public/charts');
+
+// Here we specify the public cache and the asset prefix
+$cacheEngine = new CacheEngine('web/bundles/gcharts', 'bundles/gcharts/');
+
+// Here we specify the public cache, the asset prefix and the internal cache
+$cacheEngine = new CacheEngine('web/bundles/gcharts', 'bundles/gcharts/', 'app/cache/charts');
 ```
 
-And that's all ! The CacheEngine is now active and by default save each charts
-during an hour on your server. You don't need to edit your code.
+## Usage
 
-**Note:**
-> By default, the CacheEngine is disabled.
+The usage is very simple:
 
-If you want to change the cache duration, you can add this to your config.yml:
+```php
+$cacheEngine = new CacheEngine('web/gcharts', 'gcharts/');
 
-``` yml
-leg_google_charts:
-    cache_engine:
-        enabled: true
-        default_keep_time: 1500 # In seconds
+echo '<img src="'. $cacheEngine->build($chart) .'" />';
 ```
 
-And finally, you can personalise this duration for each chart when it is going
-to be created:
+What's happened here ?
 
-``` php
-<?php
-// src/Symfony/MainBundle/Controller/DefaultController
+- The cache engine is created with `web/bundles/gcharts` as public directory
+- `CacheEngine::build(ChartInterface $chart, $keepTime = 3600)` is called :
+	- if the chart already exists in the cache (and is fresher than $keepTime), this version is returned ;
+	- if not, the Google servers are requested, and the result is stored in cache ;
+- We no have a local URL, pointing to your assets directory (for instance, something like `gcharts/55852c88e2.png`)
 
-namespace Symfony\MainBundle\Controller;
+## CacheEngine
 
-use Leg\GoogleChartsBundle\Charts\Gallery\BarChart;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+The CacheEngine has five main methods :
 
-class DefaultController extends Controller
-{
-    public function indexAction()
-    {
-    	$chart = new BarChart();
-
-    	$chart	->setWidth(200)
-		    	->setHeight(200)
-		    	->setDatas(array(200, 100, 50));
-
-    														// In seconds
-    	$url = $this->get('leg_google_charts')->build($chart, 1500);
-
-        return $this->render('SymfonyMainBundle:Default:index.html.twig', array(
-        	'chart_url' => $url
-        ));
-    }
-}
-```
-
-## How does it works behind ?
-
-### CacheEngine
-
-The CacheEngine is the base of the system. It has four main methods :
-
-- `put(ChartInterface $chart, $keepTime)`
-- `get(ChartInterface $chart)`
-- `has(ChartInterface $chart)`
-- `clear(ChartInterface $chart)`
-
-The `put()` method build the chart to get the Google URL. It hash this URL in md5
-and keep the 10 first characters of this hash. Then it save the chart image from
-Google in the public accessible directory `/web/bundles/leg_google_charts` with
-the hash as name. After that, it save another file named with the hash in the
-public inaccessible directory `/app/cache/leg_google_charts` with as content
-the creation time of the chart.
-
-The `get()` method hash the build URL too, and search for files named with this
-hash. Its check too if the file is valid and not too old.
-
-The `has()` method check too if the file exists and is valid and not too old.
-
-The `clear()` method delete the cache for a chart.
-
-### Next Steps
-
-The following documents are available:
-
-- [05 - Avanced usage of LegGCharts](05 - Avanced usage.md)
+- `put(ChartInterface $chart, $keepTime)` request the chart from Google servers even if it's in cache and store it ;
+- `build(ChartInterface $chart, $keepTime)` call `put` if the chart is not in the cache and return a local URL for the chart
+- `has(ChartInterface $chart)` check if the cache contains the chart
+- `clear(ChartInterface $chart)` clear the cache for a given chart
+- `clearAll()` clear the cache for all charts
