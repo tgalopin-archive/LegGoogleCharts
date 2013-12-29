@@ -2,3 +2,5 @@
 composer.lock
 test/Leg/objects/*
 src/Leg/GCharts/objects/*
+phpunit.xml
+vendor/*
