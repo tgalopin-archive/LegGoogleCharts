@@ -1,6 +1,9 @@
 LegGCharts
 ===========
 
+> **Note:** GoogleChartsImage tool is now deprecated. I will probably change the library to generate
+> images using another way, but for the moment, you should not use it.
+
 [![Build Status](https://travis-ci.org/tgalopin/LegGoogleCharts.png?branch=master)](https://travis-ci.org/tgalopin/LegGoogleCharts)
 
 What is LegGCharts ?
