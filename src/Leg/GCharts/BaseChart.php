@@ -17,23 +17,23 @@ use Leg\GCharts\DataSet\DataSetCollection;
 class BaseChart implements ChartInterface
 {
 
-  /**
-   * Currently support charts by Image Charts
-   * @link https://image-charts.com/swagger.json
+	/**
+	 * Currently support charts by Image Charts
+	 * @link https://image-charts.com/swagger.json
 	 * @var array
 	 */
-  const IMAGECHARTS_SUPPORTED = ['bvs', 'bhs', 'bvg', 'bhg', 'bvo', 'p', 'p3', 'pc', 'pd', 'ls', 'lc', 'lxy'];
+	const IMAGECHARTS_SUPPORTED = ['bvs', 'bhs', 'bvg', 'bhg', 'bvo', 'p', 'p3', 'pc', 'pd', 'ls', 'lc', 'lxy'];
 
 	/**
 	 * @var string
 	 */
 	const IMAGECHART_BASE_URL = 'http://image-charts.com/chart';
 
-  /**
-   * Fallback on Google Image Charts for currently unsupported charts by Image Charts
-   * @var string
-   */
-  const BASE_URL = 'http://chart.googleapis.com/chart';
+	/**
+	 * Fallback on Google Image Charts for currently unsupported charts by Image Charts
+	 * @var string
+	 */
+	const BASE_URL = 'http://chart.googleapis.com/chart';
 
 	/**
 	 * @var string
