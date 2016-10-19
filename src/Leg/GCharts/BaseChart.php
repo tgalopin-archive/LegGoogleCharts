@@ -22,7 +22,7 @@ class BaseChart implements ChartInterface
 	 * @link https://image-charts.com/swagger.json
 	 * @var array
 	 */
-	const IMAGECHARTS_SUPPORTED = ['bvs', 'bhs', 'bvg', 'bhg', 'bvo', 'p', 'p3', 'pc', 'pd', 'ls', 'lc', 'lxy'];
+	const IMAGECHARTS_SUPPORTED = array('bvs', 'bhs', 'bvg', 'bhg', 'bvo', 'p', 'p3', 'pc', 'pd', 'ls', 'lc', 'lxy');
 
 	/**
 	 * @var string
