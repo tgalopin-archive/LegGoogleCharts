@@ -1,7 +1,7 @@
 Chart types and their properties
 ================================
 
-For more informations and attributes, see : `http://code.google.com/apis/chart/image/`
+For more informations and attributes, see [Image-Charts documentation](https://image-charts.com/documentation).
 
 ### BaseChart :
 

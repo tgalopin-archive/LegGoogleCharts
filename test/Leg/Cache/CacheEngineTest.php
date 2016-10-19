@@ -48,7 +48,7 @@ class CacheEngineTest extends TestCase
 
 		@$cacheEngine->put($chart, 1200);
 
-		$this->assertTrue(file_exists($cacheEngine->getInternalCacheDir().'/4d9001221b'));
+		$this->assertTrue(file_exists($cacheEngine->getInternalCacheDir().'/3f418487f2'));
 
 		return $cacheEngine;
 	}

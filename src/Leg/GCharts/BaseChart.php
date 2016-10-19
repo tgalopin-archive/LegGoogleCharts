@@ -16,10 +16,24 @@ use Leg\GCharts\DataSet\DataSetCollection;
 
 class BaseChart implements ChartInterface
 {
+
+  /**
+   * Currently support charts by Image Charts
+   * @link https://image-charts.com/swagger.json
+	 * @var array
+	 */
+  const IMAGECHARTS_SUPPORTED = ['bvs', 'bhs', 'bvg', 'bhg', 'bvo', 'p', 'p3', 'pc', 'pd', 'ls', 'lc', 'lxy'];
+
 	/**
 	 * @var string
 	 */
-	const BASE_URL = 'http://chart.googleapis.com/chart';
+	const IMAGECHART_BASE_URL = 'http://image-charts.com/chart';
+
+  /**
+   * Fallback on Google Image Charts for currently unsupported charts by Image Charts
+   * @var string
+   */
+  const BASE_URL = 'http://chart.googleapis.com/chart';
 
 	/**
 	 * @var string
@@ -154,7 +168,7 @@ class BaseChart implements ChartInterface
 			throw new \InvalidArgumentException('A chart must have a height.', 500);
 		}
 
-		$url = self::BASE_URL.'?cht='.$this->type;
+		$url = (in_array($this->type, self::IMAGECHARTS_SUPPORTED) ? self::IMAGECHART_BASE_URL : self::BASE_URL).'?cht='.$this->type;
 		$url .= '&chs='.$this->width.'x'.$this->height;
 
 		$dataSets = array();
