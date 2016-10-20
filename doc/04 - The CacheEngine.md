@@ -1,8 +1,8 @@
 Using cache with the CacheEngine
 ================================
 
-The Google ChartsImage tool is very cool but it's not always free. If you make too many requests
-to the Google servers, you will need to pay. To resolve that problem, you can cache your charts.
+The Image-Charts tool is very cool but it's not always free. If you make too many requests
+to the Image-Charts servers, you will need to pay. To resolve that problem, you can cache your charts.
 Fortunately, the LegGCharts provides a useful CacheEngine to do that for you.
 
 ## Create the CacheEngine instance
@@ -43,14 +43,14 @@ What's happened here ?
 - The cache engine is created with `web/bundles/gcharts` as public directory
 - `CacheEngine::build(ChartInterface $chart, $keepTime = 3600)` is called :
 	- if the chart already exists in the cache (and is fresher than $keepTime), this version is returned ;
-	- if not, the Google servers are requested, and the result is stored in cache ;
+	- if not, the Image-Charts servers are requested, and the result is stored in cache ;
 - We no have a local URL, pointing to your assets directory (for instance, something like `gcharts/55852c88e2.png`)
 
 ## CacheEngine
 
 The CacheEngine has five main methods :
 
-- `put(ChartInterface $chart, $keepTime)` request the chart from Google servers even if it's in cache and store it ;
+- `put(ChartInterface $chart, $keepTime)` request the chart from Image-Charts servers even if it's in cache and store it ;
 - `build(ChartInterface $chart, $keepTime)` call `put` if the chart is not in the cache and return a local URL for the chart
 - `has(ChartInterface $chart)` check if the cache contains the chart
 - `clear(ChartInterface $chart)` clear the cache for a given chart

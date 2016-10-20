@@ -140,7 +140,7 @@ class CacheEngine
 	}
 
 	/**
-	 * Get a chart in the cache if it's possible or directly on Google if it's not.
+	 * Get a chart in the cache if it's possible or directly on Image-Charts if it's not.
 	 *
 	 * @param ChartInterface $chart
 	 * @param integer $keepTime
